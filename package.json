@@ -1,19 +1,29 @@
 {
   "name": "@edurata/amplify2api",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
   "bin": {
-    "amplify2api": "./bin/index.js"
+    "amplify2api": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "edurata-org",
   "license": "ISC",
   "dependencies": {
     "graphql": "^16.6.0",
     "lodash": "^4.17.21",
     "read-yaml-file": "^2.1.0"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Edurata/amplify2api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Edurata/amplify2api/issues"
+  },
+  "homepage": "https://github.com/Edurata/amplify2api#readme",
+  "description": ""
 }
