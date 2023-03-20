@@ -1,6 +1,6 @@
 {
   "name": "@edurata/amplify2api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "bin": {
     "amplify2api": "bin/index.js"
   },
