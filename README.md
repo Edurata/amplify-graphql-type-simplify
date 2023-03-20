@@ -48,5 +48,5 @@ extensions:
 To generate SDK file, run this in amplify root directory:
 
 ```bash
-npx amplify2api
+amplify api gql-compile && amplify codegen && npx amplify2api
 ```
