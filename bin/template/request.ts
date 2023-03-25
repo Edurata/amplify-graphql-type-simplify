@@ -27,6 +27,7 @@ async function request(query: string, variables: unknown) {
 export async function apiRequest<T extends TAppSyncQuery>(params: T) {
   const { key, variables } = params;
   // @ts-ignore
+  const { queries, mutations } = await defaultGetQueryFn();
   const query = queries[key] || mutations[key];
 
   const response = await request(query, variables);

@@ -15,6 +15,9 @@ const projectConfig = graphqlConfig.projects[projectKey];
 const schemaPath = projectConfig.schemaPath;
 const apiFilePath = projectConfig.extensions.amplify.generatedFileName;
 const docsFilePath = projectConfig.extensions.amplify.docsFilePath;
+const queriesPath = projectConfig.extensions.apiRequest.queriesPath;
+const mutationsPath = projectConfig.extensions.apiRequest.mutationsPath;
+
 const apiRequestFilePath =
   projectConfig.extensions.apiRequest.generatedFileName;
 
@@ -135,11 +138,22 @@ function renderAppSyncQueryReturns() {
 const apiImportPath = _.trimEnd(_.trimStart(apiFilePath, "src/"), ".ts");
 const docsImportPath = _.trimStart(docsFilePath, "src/");
 
+const importQueriesPath = queriesPath || `${docsImportPath}/queries`;
+const importMutationsPath = mutationsPath || `${docsImportPath}/mutations`;
+
 const fileContent = `import {
 ${renderTypeImports()}
 } from '${apiImportPath}';
-import * as queries from '${docsImportPath}/queries';
-import * as mutations from '${docsImportPath}/mutations';
+
+async function defaultGetQueryFn() {
+  try {
+    const queries = await import('${importQueriesPath}');
+    const mutations = await import('${importMutationsPath}');
+    return { queries, mutations };
+  } catch (err) {
+    throw new Error("Invalid queries/mutations path");
+  }
+}
 
 export type TModelRecord = ${renderModels()}
 

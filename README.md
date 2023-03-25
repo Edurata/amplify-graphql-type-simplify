@@ -50,3 +50,23 @@ To generate SDK file, run this in amplify root directory:
 ```bash
 amplify api gql-compile && amplify codegen && npx @edurata/amplify-graphql-type-simplify --yes
 ```
+
+---
+
+Setup for Amplify Graphql API
+
+```jsx
+import { API, graphqlOperation } from "aws-amplify";
+import { setHandler } from "graphql/apiRequest"; // generate apiRequest sdk
+
+export default function configureAppSyncRequest() {
+  setHandler(async (query, variables) => {
+    try {
+      const response = await API.graphql(graphqlOperation(query, variables));
+      return response;
+    } catch (err) {
+      return { errors: [err] };
+    }
+  });
+}
+```
