@@ -33,7 +33,9 @@ export async function apiRequest<T extends TAppSyncQuery>(params: T) {
   const response = await request(query, variables);
 
   if ("errors" in response) {
-    throw new AppSyncError(response.errors, "Api request failed");
+    // Additional logging as AppsyncError hides the real error
+    console.log(response.errors);
+    throw new AppSyncError(response.errors);
   }
 
   const result = (response?.[params.key] || null) as Nullable<
