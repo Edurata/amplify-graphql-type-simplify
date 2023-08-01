@@ -34,7 +34,7 @@ export async function apiRequest<T extends TAppSyncQuery>(params: T) {
 
   if ("errors" in response) {
     // Additional logging as AppsyncError hides the real error
-    console.log(response.errors);
+    console.error(response.errors);
     throw new AppSyncError(response.errors);
   }
 
