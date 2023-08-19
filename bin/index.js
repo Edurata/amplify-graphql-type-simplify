@@ -12,11 +12,13 @@ if (!graphqlConfig) throw new Error(".graphqlconfig.yml not found");
 const [projectKey] = Object.keys(graphqlConfig.projects);
 
 const projectConfig = graphqlConfig.projects[projectKey];
-const schemaPath = projectConfig.schemaPath;
 const apiFilePath = projectConfig.extensions.amplify.generatedFileName;
 const docsFilePath = projectConfig.extensions.amplify.docsFilePath;
 const queriesPath = projectConfig.extensions.apiRequest.queriesPath;
 const mutationsPath = projectConfig.extensions.apiRequest.mutationsPath;
+
+const schemaPath =
+  projectConfig.extensions.apiRequest.schemaPath || projectConfig.schemaPath;
 
 const apiRequestFilePath =
   projectConfig.extensions.apiRequest.generatedFileName;
